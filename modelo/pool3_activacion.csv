@@ -1,0 +1,7 @@
+imputacion,indicadores,transformacion,dropout,tam_lote,activacion,semilla,n_variables,entradas,epocas,auc_val,perdida_val,neuronas_muertas_pct,segundos
+mediana,True,log,0.2,32,relu,42,23,43,24,0.7444199931005453,0.5956515669822693,0.0,77.8
+mediana,True,log,0.2,32,relu,43,23,43,14,0.7437201495552512,0.5960643291473389,0.0,47.5
+mediana,True,log,0.2,32,relu,44,23,43,25,0.7433502693415954,0.5955571532249451,0.0,86.0
+mediana,True,log,0.2,32,leaky_relu,42,23,43,31,0.7458905894490269,0.5941755771636963,,108.4
+mediana,True,log,0.2,32,leaky_relu,43,23,43,27,0.7464806615687724,0.5937706232070923,,89.8
+mediana,True,log,0.2,32,leaky_relu,44,23,43,27,0.7445355248891495,0.5944981575012207,,88.1

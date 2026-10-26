@@ -1,0 +1,20 @@
+,auc_univariado,vif,corr_max,mas_correlacionada_con,alerta
+edad,0.583,1.34,0.322,personas_a_cargo,
+ingreso_mensual,0.519,2.415,0.824,ingreso_disponible,"|r| > 0,8"
+obligaciones_mensuales,0.503,2.072,0.692,nivel_endeudamiento_pct,
+ingreso_disponible,0.524,1.55,0.824,ingreso_mensual,"|r| > 0,8"
+monto_solicitado,0.523,76.808,0.823,cuota_estimada,VIF > 10
+plazo_meses,0.527,17.392,0.681,tasa_interes_ea,VIF > 10
+cuota_estimada,0.503,49.656,0.823,monto_solicitado,VIF > 10
+tasa_interes_ea,0.577,2.665,0.681,plazo_meses,
+nivel_endeudamiento_pct,0.519,3.627,0.692,obligaciones_mensuales,
+score_crediticio,0.719,1.254,0.31,edad,
+numero_creditos_activos,0.558,1.192,0.36,saldo_total_creditos,
+saldo_total_creditos,0.531,1.044,0.36,numero_creditos_activos,
+numero_cuotas_mora,0.549,3.343,0.875,porcentaje_pagos_oportunos,"|r| > 0,8"
+dias_maximo_mora,0.554,2.258,0.843,porcentaje_pagos_oportunos,"|r| > 0,8"
+porcentaje_pagos_oportunos,0.562,2.479,0.875,numero_cuotas_mora,"|r| > 0,8"
+antiguedad_laboral_anios,0.589,1.082,0.239,edad,
+patrimonio_indice,0.549,1.534,0.506,monto_solicitado,
+antiguedad_cliente_anios,0.558,1.372,0.362,dias_maximo_mora,
+personas_a_cargo,0.515,1.129,0.322,edad,

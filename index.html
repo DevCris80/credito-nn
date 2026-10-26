@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riesgo crediticio · Red neuronal</title>
+  <meta name="description" content="Demostración en vivo del modelo de deep learning que clasifica solicitantes de crédito como APTO o NO APTO.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav glass" aria-label="Principal">
+    <a class="brand" href="#top"><span class="brand-dot"></span>Crédito<span class="brand-nn">NN</span></a>
+    <div class="nav-links">
+      <a href="#demo">Demo</a>
+      <a href="#casos">Casos</a>
+      <a href="#lote">Lote</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#entrenamiento">Entrenamiento</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero dark grain" data-reveal-group>
+    <svg class="hero-curves" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#34D399" stop-opacity="0"/><stop offset=".5" stop-color="#34D399" stop-opacity=".9"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></linearGradient>
+      </defs>
+      <g fill="none" stroke="url(#hg)" stroke-width="1.2">
+        <path d="M-100 700 C 300 300, 700 900, 1700 250"/>
+        <path d="M-100 740 C 320 360, 720 940, 1700 310"/>
+        <path d="M-100 780 C 340 420, 740 980, 1700 370"/>
+        <path d="M-100 820 C 360 480, 760 1020, 1700 430"/>
+        <path d="M-100 660 C 280 240, 680 860, 1700 190"/>
+        <path d="M-100 620 C 260 180, 660 820, 1700 130"/>
+      </g>
+    </svg>
+    <div class="hero-bg-word" aria-hidden="true">CRÉDITO</div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="label" data-reveal><span class="pulse"></span>Red neuronal · Riesgo crediticio</span>
+        <h1 data-reveal>¿Apto<br>o <em>no apto</em>?<br>Pregúntale<br>a la red.</h1>
+        <div class="hero-actions" data-reveal>
+          <a href="#demo" class="pill-btn">
+            <span>Probar el modelo</span>
+            <span class="pill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat glass" data-reveal><div class="stat-n">0.746</div><div class="stat-d">AUC-ROC en prueba</div></div>
+        <div class="stat glass" data-reveal><div class="stat-n">68<span>%</span></div><div class="stat-d">Exactitud en prueba</div></div>
+        <div class="stat glass" data-reveal><div class="stat-n">15</div><div class="stat-d">Variables por solicitante</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER HORIZONTAL -->
+  <section class="ticker" id="ticker" aria-label="En cada solicitud, una red neuronal revela el riesgo real de pagar y decide en segundos">
+    <div class="ticker-pin">
+      <div class="ticker-track" id="tickerTrack" aria-hidden="true">
+        <span class="w">En&nbsp;cada</span>
+        <svg class="s g-s1" viewBox="0 0 120 40"><path d="M2 30 C 30 -6, 60 46, 118 8"/></svg>
+        <span class="k">solicitud</span>
+        <svg class="s ico g-s2" viewBox="0 0 40 40"><rect x="9" y="5" width="22" height="30" rx="4"/><path d="M14 14h12M14 20h12M14 26h7"/></svg>
+        <span class="w">una</span>
+        <svg class="s g-s3" viewBox="0 0 90 40"><path d="M2 20 Q 12 2 22 20 T 42 20 T 62 20 T 88 20"/></svg>
+        <span class="k">red neuronal</span>
+        <svg class="s ico g-s4" viewBox="0 0 48 40"><circle cx="8" cy="20" r="4"/><circle cx="40" cy="9" r="4"/><circle cx="40" cy="31" r="4"/><path d="M12 19 36 10M12 21 36 30"/></svg>
+        <span class="w">revela</span>
+        <svg class="s g-s5" viewBox="0 0 160 40"><path d="M2 32 C 50 32, 70 6, 110 12 S 140 28, 156 20"/><path d="M146 12l10 8-11 7"/></svg>
+        <span class="w">el</span>
+        <span class="k">riesgo real</span>
+        <svg class="s ico g-s6" viewBox="0 0 40 40"><path d="M20 4 33 9v10c0 8-5.5 13.5-13 17C12.500 32.500 7 27 7 19V9z"/><path d="m14 20 4 4 8-9"/></svg>
+        <span class="w">de</span>
+        <span class="k">pagar</span>
+        <svg class="s ico g-s7" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14"/><path d="M20 11v18M25 15c-1.500-2-9-2.500-9 2s9 3 9 7.500-8 4-9 1.500"/></svg>
+        <span class="w">y&nbsp;decide</span>
+        <svg class="s g-s8" viewBox="0 0 100 40"><path d="M2 20h30l8-14 10 28 8-14h40"/></svg>
+        <span class="w">en</span>
+        <span class="k">segundos</span>
+        <svg class="s ico g-s9" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15"/><path d="m12 21 6 6 11-13"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo light" id="demo">
+    <div class="demo-head" data-reveal>
+      <span class="label dark-label">Demo en vivo</span>
+      <h2>Mueve los datos.<br>El modelo responde.</h2>
+    </div>
+
+    <div class="examples" data-reveal>
+      <span class="label dark-label">Cargar solicitante</span>
+      <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="demo-grid">
+      <form class="form" id="form" autocomplete="off" onsubmit="return false"></form>
+
+      <aside class="result-col">
+        <div class="result dark grain" id="result" data-verdict="apto">
+          <div class="result-top">
+            <span class="label">Resultado del modelo</span>
+            <span class="tag" id="resTag">APTO</span>
+          </div>
+
+          <div class="gauge">
+            <svg viewBox="0 0 220 125" aria-hidden="true">
+              <path class="g-track" d="M20 110 A90 90 0 0 1 200 110"/>
+              <path class="g-fill" id="gFill" d="M20 110 A90 90 0 0 1 200 110"/>
+              <line class="g-thr" x1="110" y1="12" x2="110" y2="28"/>
+            </svg>
+            <div class="gauge-num"><span id="gNum">0</span><small>%</small></div>
+          </div>
+
+          <div class="verdict" id="verdict">APTO</div>
+
+          <div class="bars">
+            <div class="bar-row">
+              <div class="bar-l"><span>Prob. apto · modelo</span><b id="bP">0%</b></div>
+              <div class="bar"><i id="bPf"></i><u></u></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-l"><span>Prob. apto · población real</span><b id="bR">0%</b></div>
+              <div class="bar"><i id="bRf"></i></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CASOS + LOTE -->
+  <section class="batch dark grain" id="casos">
+    <div class="batch-grid">
+      <div class="steps">
+        <span class="label" data-reveal>Casos de ejemplo</span>
+        <h2 data-reveal>Cinco solicitantes.<br>Cinco veredictos.</h2>
+        <ol class="cases" id="cases"></ol>
+      </div>
+
+      <div class="mock-wrap" id="lote">
+        <div class="mock glass" data-reveal>
+          <div class="mock-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="mock-title" id="mockTitle">solicitantes_ejemplo.csv</span>
+          </div>
+          <div class="mock-body">
+            <div class="table-wrap">
+              <table class="tbl" id="tbl">
+                <thead><tr><th>#</th><th>Score</th><th>Monto</th><th>Contrato</th><th>P(apto)</th><th>Decisión</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="mock-actions">
+              <label class="pill-btn small" for="csvIn">
+                <span>Subir CSV</span>
+                <span class="pill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
+              </label>
+              <input type="file" id="csvIn" accept=".csv,text/csv" hidden>
+              <button class="ghost-btn" id="csvOut" type="button">Descargar resultados</button>
+            </div>
+            <p class="mock-err" id="csvErr" role="alert" hidden></p>
+          </div>
+          <div class="float-tag" id="floatTag">5 evaluados</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="results light" id="resultados">
+    <div class="demo-head" data-reveal>
+      <span class="label dark-label">Resultados en prueba</span>
+      <h2>Lo que midió<br>el modelo.</h2>
+    </div>
+
+    <div class="res-grid">
+      <article class="card imp-card" data-reveal>
+        <header><span class="label dark-label">Variables que más pesan</span><small>Caída del AUC al desordenar la variable</small></header>
+        <ol class="imp" id="imp"></ol>
+      </article>
+
+      <div class="res-side">
+        <article class="card met-card dark grain" data-reveal>
+          <header><span class="label">Métricas</span></header>
+          <div class="met-head"><span></span><b>Balanceado 50/50</b><b>Población real 8 %</b></div>
+          <div class="met" id="met"></div>
+        </article>
+
+        <article class="card sel-card" data-reveal>
+          <header><span class="label dark-label">AUC según variables usadas</span><small>Validación, promedio de 3 semillas</small></header>
+          <svg class="sel" id="sel" viewBox="0 0 400 190" role="img" aria-label="AUC de validación según el número de variables"></svg>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRENAMIENTO -->
+  <section class="train dark grain" id="entrenamiento">
+    <div class="train-head" data-reveal>
+      <span class="label">Entrenamiento</span>
+      <h2>Cómo aprendió.<br>Época por época.</h2>
+    </div>
+
+    <div class="train-stats" id="tstats" data-reveal></div>
+
+    <article class="glass tcard arch" data-reveal>
+      <header>
+        <span class="label">Arquitectura de la red</span>
+        <div class="legend nn-legend"><span><i class="l-pos"></i>peso positivo</span><span><i class="l-neg"></i>peso negativo</span></div>
+      </header>
+      <svg class="chart" id="nn" viewBox="0 0 1000 440" role="img" aria-label="Red neuronal: 26 entradas, capas ocultas de 64, 32 y 16 neuronas, 1 salida"></svg>
+      <p class="nn-note">Neuronas representativas de cada capa. Las conexiones muestran los pesos reales del modelo entrenado.</p>
+    </article>
+
+    <div class="train-grid">
+      <article class="glass tcard" data-reveal>
+        <header>
+          <span class="label">Curvas de aprendizaje</span>
+          <div class="seg" role="group" aria-label="Métrica">
+            <button type="button" data-m="loss" aria-pressed="true">Pérdida</button>
+            <button type="button" data-m="auc" aria-pressed="false">AUC</button>
+          </div>
+        </header>
+        <svg class="chart" id="curves" viewBox="0 0 560 300" role="img" aria-label="Curvas de entrenamiento y validación por época"></svg>
+        <div class="legend"><span><i class="l-tr"></i>Entrenamiento</span><span><i class="l-va"></i>Validación</span></div>
+      </article>
+
+      <article class="glass tcard" data-reveal>
+          <header><span class="label">Curva ROC · prueba</span><span class="tag-auc">AUC 0.746</span></header>
+          <svg class="chart" id="roc" viewBox="0 0 300 250" role="img" aria-label="Curva ROC en el conjunto de prueba"></svg>
+      </article>
+      <article class="glass tcard cm-card" data-reveal>
+        <header><span class="label">Matriz de confusión · prueba</span></header>
+        <div class="cm" id="cm"></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>Red neuronal de riesgo crediticio · MLP 26-64-32-16-1</span>
+  <span>Apoyo al analista, no para decidir sola.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="model-data.js"></script>
+<script src="modelo.js"></script>
+<script src="data/ejemplos.js"></script>
+<script src="data/resultados.js"></script>
+<script src="data/entrenamiento.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

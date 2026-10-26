@@ -1,0 +1,6 @@
+﻿edad,monto_solicitado,plazo_meses,tasa_interes_ea,nivel_endeudamiento_pct,score_crediticio,numero_creditos_activos,saldo_total_creditos,dias_maximo_mora,porcentaje_pagos_oportunos,antiguedad_laboral_anios,patrimonio_indice,antiguedad_cliente_anios,linea_negocio,tipo_contrato
+33.7,497520.0,36.0,92.85,13.14,215.0,1.0,572251.5,96.0,40.0,1.41,1,2.26,Cash loans,Working
+30.3,675000.0,24.0,86.33,19.02,419.0,3.0,1129678.515,0.0,100.0,7.93,3,2.14,Cash loans,Working
+42.5,679500.0,48.0,48.94,35.41,595.0,4.0,401013.0,5.0,71.43,10.38,3,1.4,Cash loans,Working
+64.2,669600.0,48.0,53.26,18.81,584.0,1.0,32058.0,0.0,100.0,,1,6.38,Cash loans,Pensioner
+42.6,112500.0,12.0,67.04,11.22,772.0,2.0,666292.5,0.0,100.0,7.38,2,3.36,Cash loans,State servant

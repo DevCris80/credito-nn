@@ -1,0 +1,10 @@
+,Prueba balanceada (50/50),"Prevalencia real (8,07 %)"
+AUC-ROC,0.7459,0.7459
+Exactitud,0.682,0.6815
+Precisión (apto),0.6822,0.9607
+Sensibilidad (apto),0.6814,0.6814
+F1 (apto),0.6818,0.7973
+Precisión (no apto),0.6818,0.1583
+Sensibilidad (no apto),0.6826,0.6826
+F1 (no apto),0.6822,0.257
+AUC-PR (no apto),0.7344,0.2238
